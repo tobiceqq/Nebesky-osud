@@ -1,0 +1,8 @@
+Brána větru, east, Ostrov bílých stínů
+Ostrov bílých stínů, west, Brána větru, east, Nebeský les
+Nebeský les, west, Ostrov bílých stínů, east, Ostrov bouří, south, Svatyně mlžného draka
+Ostrov bouří, west, Nebeský les, east, Nebeský hrad, south, Rozpadlý most
+Nebeský hrad, west, Ostrov bouří, south, Rozpadlý most
+Svatyně mlžného draka, east, Rozpadlý most, north, Nebeský les
+Rozpadlý most, west, Svatyně mlžného draka, east, Posvátná svatyně, north, Ostrov bouří
+Posvátná svatyně, west, Rozpadlý most, north, Ostrov bouří, west, Svatyně mlžného draka
