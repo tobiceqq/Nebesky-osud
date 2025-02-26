@@ -1,4 +1,5 @@
-import java.text.NumberFormat;
+package world;
+
 import java.util.Arrays;
 
 public class Location {
@@ -42,7 +43,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location{" +
+        return "world.Location{" +
                 "name='" + name + '\'' +
                 ", ID=" + ID +
                 ", locations=" + Arrays.toString(locations) +
