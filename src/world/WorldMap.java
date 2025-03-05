@@ -13,7 +13,7 @@ public class WorldMap {
 
 
     public boolean loadMap() {
-        try (BufferedReader br = new BufferedReader(new FileReader("world_map.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("world/world_map.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
