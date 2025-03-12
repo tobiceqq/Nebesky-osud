@@ -7,10 +7,20 @@ public class Go implements Command {
         private WorldMap worldMap;
         private String direction;
 
+    public Go(WorldMap worldMap, String direction) {
+        this.worldMap = worldMap;
+        this.direction = direction;
+    }
 
-        public String execute() {
+    public String execute() {
+        int parsedDirection = Integer.parseInt(direction);
+
+        if (parsedDirection == -1) {
+            return "Invalid direction! Use: north, south, east, or west.";
+        }
+
             boolean moved = worldMap.move(parseDirection(direction));
-            return moved ? "You have moved to another location." : "You cant go there.";
+            return moved ? "You have moved to: " + worldMap.getCurrentLocation().getName() : "You can't go there.";
         }
 
         public boolean exit() {

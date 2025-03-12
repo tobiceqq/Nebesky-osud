@@ -10,13 +10,15 @@ public class Movement implements Command {
     private Scanner sc = new Scanner(System.in);
     private WorldMap world;
 
-    public Movement(WorldMap world) {
+    public Movement(WorldMap world, String direction) {
         this.world = world;
     }
 
     public String execute() {
         Location currentLocation = world.getCurrentLocation();
-        System.out.println("Current location: " + currentLocation);
+        if (currentLocation == null) return "Error: Current location is undefined.";
+
+        System.out.println("Current location: " + currentLocation.getName());
         System.out.println("Available directions: North, South, East, West");
         System.out.println("Where do you want to go? -> ");
 
@@ -28,11 +30,7 @@ public class Movement implements Command {
         }
 
         boolean moved = world.move(directionIndex);
-        if (moved) {
-            return "Moved to: " + world.getCurrentLocation().getName();
-        } else {
-            return "You can't go that way.";
-        }
+        return moved ? "Moved to: " + world.getCurrentLocation().getName() : "You can't go that way.";
     }
 
     private int getDirectionIndex(String direction) {

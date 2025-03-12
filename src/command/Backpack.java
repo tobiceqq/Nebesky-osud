@@ -2,15 +2,20 @@ package command;
 
 import world.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Backpack {
     private List<Item> items;
     private int capacity;
 
-
+    public Backpack(int capacity) {
+        this.items = new ArrayList<>();
+        this.capacity = capacity;
+    }
 
     public boolean addItem(Item item) {
+        if (item == null) return false;
         if (items.size() < capacity) {
             items.add(item);
             return true;
@@ -27,10 +32,16 @@ public class Backpack {
     }
 
     public List<Item> getItems() {
-        return items;
+        return new ArrayList<>(items);
     }
 
-    public String useItem() {
+    public String useItem(String itemName) {
+        for (Item item : items) {
+            if (item.getName().equals(itemName)) {
+                items.remove(item);
+                return item.useItem();
+            }
+        }
         return "Item used";
     }
 
