@@ -1,60 +1,60 @@
 package characters;
 
-public class Enemy extends Player {
+import java.util.HashMap;
+import java.util.Random;
 
-    private static Enemy instance;
-    private int health;
-    private int attackPower;
+public class Enemy {
 
-    public Enemy() {
+    private String name;
+    private int damage;
+    private int hp;
+    Random random = new Random();
+    private static HashMap<Integer, Enemy> enemies = new HashMap<>();
+
+    public Enemy(String name, int damage, int hp) {
+        this.name = name;
+        this.damage = damage;
+        this.hp = hp;
     }
 
-    public Enemy(int health, int attackPower) {
-        super(health);
-        this.attackPower = attackPower;
+    public static void addEnemy(int location, Enemy enemy) {
+        enemies.put(location, enemy);
     }
 
-    public static Enemy getInstance() {
-        if (instance == null) {
-            instance = new Enemy();
-        }
-        return instance;
+    public static void removeEnemy(int location) {
+        enemies.remove(location);
     }
 
-
-    public int getHealth() {
-
-        return health;
+    public static Enemy getEnemyIn(int location) {
+        return enemies.get(location);
     }
 
-
-    public int getAttackPower() {
-
-        return attackPower;
+    public String getName() {
+        return name;
     }
 
-
-    public void takeDamage(int damage) {
-        health -= damage;
-        if (health < 0) health = 0;
-        System.out.println("You took damage! Health lefta: " + health);
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    public boolean isDefeated() {
-
-        return health <= 0;
+    public int getDamage() {
+        return damage;
     }
 
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
 
-    public void attack(Player player) {
-        if (isDefeated()) {
-            System.out.println(getName() + " is already defeated!");
-            return;
-        }
+    public int getHp() {
+        return hp;
+    }
 
-        System.out.println(getName() + " attacks " + player.getName() + " for " + attackPower + " damage!");
-        player.takeDamage(attackPower);
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
 
+    @Override
+    public String toString() {
+        return "Enemy → " + "name: " + name + ", damage: " + damage + ", hp: " + hp;
     }
 }

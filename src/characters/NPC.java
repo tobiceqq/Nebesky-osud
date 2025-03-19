@@ -1,32 +1,48 @@
 package characters;
 
+import java.util.HashMap;
+
 public class NPC {
 
-    private static NPC instance;
     private String name;
-    private String description;
+    private String dialogue;
+    private static HashMap<Integer, NPC> npcs = new HashMap<>();
 
-
-    public NPC() {
-    }
-
-    public NPC(String name, String description) {
+    public NPC(String name, String dialogue) {
         this.name = name;
-        this.description = description;
+        this.dialogue = dialogue;
     }
 
-    public static NPC getInstance() {
-        if (instance == null) {
-            instance = new NPC();
-        }
-        return instance;
+    public static void addNPC(int location, NPC npc) {
+        npcs.put(location, npc);
+    }
+
+    public static NPC getNPCIn(int location) {
+        return npcs.get(location);
+    }
+
+    public String talk() {
+        return name + ": " + dialogue;
+    }
+
+    public String getDialogue() {
+        return dialogue;
+    }
+
+    public void setDialogue(String dialogue) {
+        this.dialogue = dialogue;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getDialogue() {
-        return "This character has no words.";
+    public void setName(String name) {
+        this.name = name;
     }
+
+
+
+
+
 }

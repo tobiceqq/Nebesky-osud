@@ -1,23 +1,27 @@
 package command;
 
+import world.WorldMap;
 import characters.NPC;
 
 public class Talk implements Command {
 
         private NPC character;
 
-        public Talk(NPC character) {
+        public Talk() {
             this.character = character;
         }
 
+        public String execute() {
+            int currentPosition = WorldMap.getCurrentPosition();
+            NPC npc = NPC.getNPCIn(currentPosition);
+            if (npc != null) {
+                return npc.talk();
+            } else {
+                return "Silence... There's no one in sight.";
+            }
+        }
 
-    public String execute() {
-            if (character == null) return "There is one to talk to here.";
-
-            String dialogue = character.getDialogue();
-            return (dialogue == null && !dialogue.isEmpty()) ? dialogue : "This character has nothing to say.";
-    }
-
+    @Override
     public boolean exit() {
         return false;
     }

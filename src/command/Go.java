@@ -2,39 +2,36 @@ package command;
 
 import world.WorldMap;
 
+import java.util.Scanner;
+
 public class Go implements Command {
 
         private WorldMap worldMap;
-        private String direction;
+        private Scanner scanner = new Scanner(System.in);
 
-    public Go(WorldMap worldMap, String direction) {
+    public Go(WorldMap worldMap) {
         this.worldMap = worldMap;
-        this.direction = direction;
     }
 
     public String execute() {
-        int parsedDirection = Integer.parseInt(direction);
+        System.out.println("You are in: " + worldMap.getCurrentPosition1().getName());
+        System.out.println("Which way you want to go?");
 
-        if (parsedDirection == -1) {
-            return "Invalid direction! Use: north, south, east, or west.";
+        String direction = scanner.next();
+        direction = direction.toLowerCase();
+
+        System.out.println(worldMap.move(direction));
+        return "";
         }
 
-            boolean moved = worldMap.move(parseDirection(direction));
-            return moved ? "You have moved to: " + worldMap.getCurrentLocation().getName() : "You can't go there.";
-        }
-
-        public boolean exit() {
-            return false;
-        }
-
-        private int parseDirection(String direction) {
-            switch (direction.toLowerCase()) {
-                case "north": return 0;
-                case "south": return 1;
-                case "east": return 2;
-                case "west": return 3;
-                default: return -1;
-            }
-        }
+    @Override
+    public boolean exit() {
+        return false;
     }
+}
+
+
+
+
+
 

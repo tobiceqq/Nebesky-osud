@@ -1,71 +1,50 @@
 package world;
-
 import java.util.Arrays;
 
 public class Location {
-
     private String name;
-    private String description;
     private int ID;
     private int[] locations;
-    private String hint;
 
+    public Location(){
 
-    public Location() {
-        this.name = "";
-        this.ID = -1;
-        this.locations = new int[]{-1, -1, -1, -1};
-        this.hint = "";
     }
 
-    public Location(String name, String description, int ID, int[] locations, String hint) {
+    public Location(String name, int ID, String[] locations) {
         this.name = name;
-        this.description = description;
         this.ID = ID;
         this.locations = new int[4];
-        this.hint = hint;
-
         for (int i = 0; i < locations.length; i++) {
-            try {
-                this.locations[i] = locations[i];
-            } catch (NumberFormatException e) {
-                this.locations[i] = -1;
-            }
+            this.locations[i] = Integer.parseInt(locations[i]);
         }
-    }
-
-    public Location(String name, int id, int[] directions) {
     }
 
     public String getName() {
         return name;
     }
 
-    public String getDescription() {
-        if (description == null || description.trim().isEmpty()) {
-            return "There is nothing special here.";
-        }
-        return description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getID() {
         return ID;
     }
 
-    public int getDirection(int index) {
-        return (index >= 0 && index < locations.length) ? locations[index] : -1;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
-    public String getHint() {
-        return (hint != null && !hint.isEmpty()) ? hint : "No hint available for this location";
+    public int[] getLocations() {
+        return locations;
+    }
+
+    public void setLocations(int[] locations) {
+        this.locations = locations;
     }
 
     @Override
     public String toString() {
-        return "world.Location{" +
-                "name='" + name + '\'' +
-                ", ID=" + ID +
-                ", locations=" + Arrays.toString(locations) +
-                '}';
+        return "Location → " + "name: " + name + ", ID: " + ID + ", locations: " + Arrays.toString(locations);
     }
 }

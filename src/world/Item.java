@@ -4,34 +4,38 @@ public class Item {
 
     private String name;
     private String description;
-    private boolean isPortable;
+    private int damageBoost;
+    private int hpBoost;
+    private ItemCategory category;
 
-    public Item(String name, String description, boolean isPortable) {
+    public Item(String name, String description, ItemCategory category) {
         this.name = name;
         this.description = description;
-        this.isPortable = isPortable;
+        this.category = category;
     }
 
     public String getName() {
         return name;
     }
 
-
     public String getDescription() {
         return description;
     }
 
-
-    public boolean isPortable() {
-        return isPortable;
+    public int getDamageBoost() {
+        return damageBoost;
     }
 
-    public String useItem() {
-        return "You used" + name + ", but nothing happened.";
+    public int getHpBoost() {
+        return hpBoost;
+    }
+
+    public ItemCategory getCategory() {
+        return category;
     }
 
     @Override
     public String toString() {
-        return name + " - " + description;
+        return "Item → " + "name: " + name + ", description: " + description + ", category: " + category;
     }
 }

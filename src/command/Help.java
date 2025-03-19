@@ -6,14 +6,12 @@ public class Help implements Command {
     public String execute() {
         return """
                 Available commands:
-                - go [direction]  → Move to a new location
-                - pickUp [item]   → Pick up an item
-                - putDown [item]  → Drop an item
-                - talk [npc]      → Talk to a character
-                - fight [enemy]   → Engage in combat
-                - explore         → Look around
-                - hint            → Get a hint
-                - end             → Quit the game
+                1️⃣ go              → Move to a new location
+                2️⃣ end             → Quit the game
+                3️⃣ talk            → Talk to a character
+                4️⃣ explore         → Look around
+                5️⃣ backpack        → Shows your inventory
+                6️⃣ fight           → Engage in combat
                 """;
     }
 
