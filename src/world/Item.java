@@ -4,12 +4,10 @@ public class Item {
 
     private String name;
     private String description;
-    private boolean isPortable;
 
-    public Item(String name, String description, boolean isPortable) {
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
-        this.isPortable = isPortable;
     }
 
     public String getName() {
@@ -21,10 +19,6 @@ public class Item {
         return description;
     }
 
-
-    public boolean isPortable() {
-        return isPortable;
-    }
 
     public String useItem() {
         return "You used" + name + ", but nothing happened.";

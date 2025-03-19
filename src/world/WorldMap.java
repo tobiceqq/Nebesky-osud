@@ -3,69 +3,76 @@ package world;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 
+
+
 public class WorldMap {
-
-    private HashMap<Integer, Location> world = new HashMap<>();
-    private int start = 0;
-    private int currentPosition = start;
-    private static WorldMap instance;
-
-    public WorldMap() {
-
-    }
-
-    public static WorldMap getInstance() {
-        if (instance == null) {
-            instance = new WorldMap();
-        }
-        return instance;
-    }
+    private static HashMap<Integer, Location> world = new HashMap<>();
+    private static int start = 0;
+    private static int currentPosition = start;
+    public static boolean hasMap = false;
 
     public boolean loadMap() {
-        try (BufferedReader br = new BufferedReader(new FileReader("world/world_map.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/map.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length < 6) continue;
-
-                int ID = Integer.parseInt(parts[0]);
-                String name = parts[1];
-
-                int[] directions = new int[4];
-                for (int i = 0; i < 4; i++) {
-                    try {
-                        directions[i] = Integer.parseInt(parts[i + 2]);
-                    } catch (NumberFormatException e) {
-                        directions[i] = -1;
-                    }
-                }
-
-                Location location = new Location(name, ID, directions);
-                world.put(ID, location);
+                String[] lines = line.split(",");
+                Location location = new Location(
+                        lines[1],
+                        Integer.parseInt(lines[0]),
+                        Arrays.copyOfRange(lines, 2, 6)
+                );
+                world.put(Integer.valueOf(lines[0]), location);
             }
+
             return true;
         } catch (IOException e) {
-            System.out.println("Error loading world map" + e.getMessage());
             return false;
+        }
+
+
+    }
+
+    public String move(String direction) {
+        int index;
+        switch (direction.toLowerCase()) {
+
+            case "north":
+                index = 0;
+                break;
+            case "south":
+                index = 1;
+                break;
+            case "east":
+                index = 2;
+                break;
+            case "west":
+                index = 3;
+                break;
+            default:
+                    return "Invalid direction. Type only these directions: north, south, east, west";
+        }
+        int newPosition = world.get(currentPosition).getLocations()[index];
+        if (newPosition == -1) {
+            return "You can't move in this direction.";
+        } else {
+            currentPosition = newPosition;
+            return "You moved to: " + world.get(currentPosition).getName();
         }
     }
 
-    public Location getCurrentLocation() {
+    public Location getCurrentPosition1(){
         return world.get(currentPosition);
     }
 
-    public boolean move(int direction) {
-        int nextID = world.get(currentPosition).getDirection(direction);
-        if (nextID != -1 && world.containsKey(nextID)) {
-            currentPosition = nextID;
-            return true;
-        }
-        return false;
+    static public int getCurrentPosition() {
+        return currentPosition;
     }
 
     public HashMap<Integer, Location> getWorld() {
         return world;
     }
+
 }

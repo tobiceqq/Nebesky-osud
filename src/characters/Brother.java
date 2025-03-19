@@ -5,11 +5,11 @@ public class Brother extends NPC {
     private boolean isRescued;
 
     public Brother(String name, String description) {
-        super(name, description);
+        super();
         this.isRescued = false;
     }
 
-    public void rescue() {
+  /*  public void rescue() {
         if (!isRescued) {
             isRescued = true;
             System.out.println(getName() + " has been rescued!");
@@ -17,6 +17,8 @@ public class Brother extends NPC {
             System.out.println(getName() + " is already safe.");
         }
     }
+
+   */
 
     public boolean isRescued() {
         return isRescued;

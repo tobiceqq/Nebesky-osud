@@ -1,9 +1,0 @@
-ID, Název, North, South, East, West
-0, Brána větru, -1, -1, 1, -1
-1, Ostrov bílých stínů, -1, -1, 2, 0
-2, Nebeský les, -1, 3, -1, 1
-3, Ostrov bouří, -1, 2, 4, -1
-4, Nebeský hrad, -1, 3, -1, -1
-5, Svatyně mlžného draka, 3, -1, 6, -1
-6, Rozpadlý most, 5, -1, 7, -1
-7, Posvátná svatyně, 6, -1, -1, -1

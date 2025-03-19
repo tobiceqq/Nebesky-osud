@@ -2,31 +2,30 @@ package command;
 
 import characters.Enemy;
 import characters.Player;
+import world.WorldMap;
+
+import java.util.Scanner;
 
 public class Fight implements Command {
 
-    private Player player;
-    private Enemy enemy;
+    private WorldMap worldMap = new WorldMap();
+    Scanner scanner = new Scanner(System.in);
 
-    public Fight(Player player, Enemy enemy) {
-        this.player = player;
-        this.enemy = enemy;
-    }
-
+    @Override
     public String execute() {
-        if (enemy == null) return "No enemy here to fight.";
+        System.out.println("Where do you want to go?");
 
-        while (!enemy.isDefeated() && player.isAlive()) {
-            player.attack(enemy);
-            if (enemy.isDefeated()) return "You defeated " + enemy.getName() + "!";
+        String direction = scanner.next();
+        direction = direction.toLowerCase();
 
-            enemy.attack(player);
-        }
-
-        return player.isAlive() ? "You won the fight!" : "You were defeated!...";
+       // System.out.println(worldMap.move);
+        return "";
     }
 
+    @Override
     public boolean exit() {
-        return enemy.isDefeated();
+        return false;
     }
+
+
 }

@@ -2,7 +2,6 @@ package characters;
 
 public class Enemy extends Player {
 
-    private static Enemy instance;
     private int health;
     private int attackPower;
 
@@ -13,14 +12,6 @@ public class Enemy extends Player {
         super(health);
         this.attackPower = attackPower;
     }
-
-    public static Enemy getInstance() {
-        if (instance == null) {
-            instance = new Enemy();
-        }
-        return instance;
-    }
-
 
     public int getHealth() {
 
