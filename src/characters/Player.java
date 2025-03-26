@@ -38,7 +38,7 @@ public class Player {
     public int getHp() {
         return hp;
     }
-// uprava
+// mozna potreba upravit
     public void setHp(int hp) {
         this.hp = hp;
     }
