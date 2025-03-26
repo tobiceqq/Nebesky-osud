@@ -42,21 +42,35 @@ public class WorldMap {
             case "north":
                 index = 0;
                 break;
+            case "n":
+                index = 0;
+                break;
+
             case "south":
                 index = 1;
                 break;
+            case "s":
+                index = 1;
+                break;
+
             case "east":
+                index = 2;
+                break;
+            case "e":
                 index = 2;
                 break;
             case "west":
                 index = 3;
                 break;
+            case "w":
+                index = 3;
+                break;
             default:
-                    return "Invalid direction. Type only these directions: north, south, east, west";
+                    return "Invalid direction. Type only these directions: north (n), south (s), east (e), west (w)";
         }
         int newPosition = world.get(currentPosition).getLocations()[index];
         if (newPosition == -1) {
-            return "You can't move in this direction.";
+            return "\uD83D\uDEAB You can't move in this direction.";
         } else {
             currentPosition = newPosition;
             return "You moved to: " + world.get(currentPosition).getName();

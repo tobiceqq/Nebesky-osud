@@ -19,6 +19,7 @@ public class Console {
         map.put("1", new Go(worldMap));
 
         map.put("commands", new Help());
+        map.put("c", new Help());
 
 
         map.put("end", new End());
@@ -47,10 +48,10 @@ public class Console {
         command = command.toLowerCase();
         saveCommand(command);
         if(map.containsKey(command)){
-            System.out.println(">> "+map.get(command).execute());
+            System.out.println("● "+map.get(command).execute());
             exit = map.get(command).exit();
         }else{
-            System.out.println(">> Undefined command");
+            System.out.println("\uD83D\uDEAB Undefined command");
         }
     }
 
@@ -58,7 +59,7 @@ public class Console {
         initialize();
         System.out.println();
         System.out.println("WELCOME TO DESTINY OF THE SKY!");
-        System.out.println("\uD83D\uDD0D For available commands type 'commands'");
+        System.out.println("\uD83D\uDD0D For available commands type 'commands' or 'c'");
         try{
             fileReset();
             do{

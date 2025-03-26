@@ -54,6 +54,7 @@ public class Explore implements Command {
         for (Item item : items) {
 
             if (!roomItems.contains(item)) {
+                System.out.println("Item was added to your backpack.");
                 roomItems.add(item);
                 System.out.println(item);
             }

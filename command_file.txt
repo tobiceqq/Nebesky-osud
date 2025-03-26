@@ -1,2 +1,4 @@
-commands
-2
+fight
+c
+1
+fight
