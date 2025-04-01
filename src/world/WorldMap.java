@@ -24,7 +24,7 @@ public class WorldMap {
 
 
     public boolean loadMap() {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/map.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/textFiles/map.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split(",");
@@ -53,6 +53,8 @@ public class WorldMap {
     public HashMap<Integer, Location> getWorld() {
         return world;
     }
+
+
 
 
 

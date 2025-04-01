@@ -38,7 +38,14 @@ public class Explore implements Command {
                 case 0:
                     items.add(new Item("Wind Scroll" , "Allows the access to the next area" , ItemCategory.ACCESS));
                     WorldMap.location_available1 = true;
-                break;
+                    break;
+                case 1:
+                    items.add(new Item("Silver Bell" , "" , ItemCategory.ACCESS));
+                    break;
+                case 2:
+                    items.add(new Item("Guardian's Amulet" , "" , ItemCategory.ACCESS));
+                    items.add(new Item("Heal potion" , "Heals you by 15 HP" , ItemCategory.HEAL));
+                    break;
             }
             roomItems.put(currentPosition, items);
         }

@@ -10,7 +10,16 @@ public class Console {
     private boolean exit = false;
     private HashMap<String, Command> map = new HashMap<>();
     private WorldMap worldMap = new WorldMap();
-    public static String commandFile = "command_file.txt";
+    public static String commandFile = "textFiles/command_file.txt";
+
+    public Console() {
+
+        Text intro = new Text("src/textFiles/introduction.txt");
+        System.out.println("☁\uFE0F WELCOME TO DESTINY OF THE SKY! ☁\uFE0F");
+        System.out.println();
+        System.out.println(intro.startText());
+    }
+
 
 
     public void initialize() {
@@ -58,9 +67,8 @@ public class Console {
     }
 
     public void start(){
+        worldMap.loadMap();
         initialize();
-        System.out.println();
-        System.out.println("WELCOME TO DESTINY OF THE SKY!");
         System.out.println("\uD83D\uDD0D For available commands type 'commands' or 'c'");
         try{
             fileReset();
@@ -84,18 +92,6 @@ public class Console {
     private void fileReset(){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(commandFile,false))){
         }catch(Exception e){
-        }
-    }
-
-    private static void introduction(){
-        try(BufferedReader br = new BufferedReader(new FileReader("src/introduction.txt"))) {
-            String line;
-
-            while ((line = br.readLine())!= null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            System.out.println("❌ Unable to read the introduction.");
         }
     }
 

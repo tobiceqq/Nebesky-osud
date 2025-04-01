@@ -6,7 +6,7 @@ public class End implements Command {
 
     @Override
     public String execute() {
-        return "The game is over!";
+        return "\uD83C\uDFAE The game is over!";
     }
 
     @Override

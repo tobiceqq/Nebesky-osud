@@ -19,6 +19,12 @@ public class Location {
         }
     }
 
+    public Location(String name, int ID, int[] locations) {
+        this.name = name;
+        this.ID = ID;
+        this.locations = locations;
+    }
+
     public String getName() {
         return name;
     }
