@@ -2,8 +2,7 @@ package world;
 
 import command.*;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -22,20 +21,23 @@ public class Console {
         map.put("c", new Help());
 
 
-        map.put("end", new End());
-        map.put("2", new End());
+        map.put("fight", new Fight());
+        map.put("2", new Fight());
 
         map.put("talk", new Talk());
         map.put("3", new Talk());
 
+        map.put("description", new Description());
+        map.put("4", new Description());
+
         map.put("explore", new Explore(worldMap.getCurrentPosition1()));
-        map.put("4", new Explore(worldMap.getCurrentPosition1()));
+        map.put("5", new Explore(worldMap.getCurrentPosition1()));
 
         map.put("backpack", new Backpack());
-        map.put("5", new Backpack());
+        map.put("6", new Backpack());
 
-        map.put("fight", new Fight());
-        map.put("6", new Fight());
+        map.put("end", new End());
+        map.put("7", new End());
 
 
     }
@@ -48,10 +50,10 @@ public class Console {
         command = command.toLowerCase();
         saveCommand(command);
         if(map.containsKey(command)){
-            System.out.println("● "+map.get(command).execute());
+            System.out.println(map.get(command).execute());
             exit = map.get(command).exit();
         }else{
-            System.out.println("\uD83D\uDEAB Undefined command");
+            System.out.println("❌ Undefined command");
         }
     }
 
@@ -82,6 +84,18 @@ public class Console {
     private void fileReset(){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(commandFile,false))){
         }catch(Exception e){
+        }
+    }
+
+    private static void introduction(){
+        try(BufferedReader br = new BufferedReader(new FileReader("src/introduction.txt"))) {
+            String line;
+
+            while ((line = br.readLine())!= null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("❌ Unable to read the introduction.");
         }
     }
 

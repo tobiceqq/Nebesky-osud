@@ -63,7 +63,7 @@ public class Fight implements Command {
                     int damageBonus = random.nextInt(10, 15);
                     int hpBonus = random.nextInt(15, 25);
 
-                    System.out.println("You defeated the enemy!");
+                    System.out.println("✅ You defeated the enemy!");
                     player.setDamage(player.getDamage() + damageBonus);
                     player.setHp(player.getHp() + hpBonus);
                     return "You earned hp: " + hpBonus + " and damage: " + damageBonus;
@@ -71,7 +71,7 @@ public class Fight implements Command {
 
                 player.setHp(player.getHp() - enemy.getDamage());
                 if (player.getHp() <= 0) {
-                    System.out.println("You were defeated!");
+                    System.out.println("❌ You were defeated!");
                     End.exit = true;
                     isDefeated = true;
                 }

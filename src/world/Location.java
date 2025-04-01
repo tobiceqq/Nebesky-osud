@@ -45,6 +45,6 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location → " + "name: " + name + ", ID: " + ID + ", locations: " + Arrays.toString(locations);
+        return name + ", ID: " + ID + ", locations: " + Arrays.toString(locations);
     }
 }

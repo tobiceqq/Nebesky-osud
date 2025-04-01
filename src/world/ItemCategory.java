@@ -1,5 +1,5 @@
 package world;
 
 public enum ItemCategory {
-    HEAL, SCROLL, WEAPON
+        HEAL, ACCESS, POWER
 }

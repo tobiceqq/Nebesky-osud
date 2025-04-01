@@ -1,5 +1,6 @@
-package command;
+package Tests;
 
+import command.End;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

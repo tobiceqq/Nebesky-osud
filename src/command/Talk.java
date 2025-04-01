@@ -17,7 +17,7 @@ public class Talk implements Command {
             if (npc != null) {
                 return npc.talk();
             } else {
-                return "Silence... There's no one in sight.";
+                return "❌ Silence... There's no one in sight.";
             }
         }
 

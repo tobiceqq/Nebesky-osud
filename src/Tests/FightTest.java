@@ -1,0 +1,6 @@
+package Tests;
+
+class FightTest {
+
+
+}

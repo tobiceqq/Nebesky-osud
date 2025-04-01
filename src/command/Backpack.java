@@ -80,14 +80,14 @@ public class Backpack implements Command {
                 System.out.println("❤\uFE0F Healed by " + healed + " hp. Current hp: " + player.getHp());
             }
 
-            case WEAPON -> {
+            case POWER -> {
                 int boost = chosen.getDamageBoost();
                 player.setDamage(player.getDamage() + boost);
                 backpack.remove(choice);
                 System.out.println("\uD83D\uDDE1\uFE0F Damage increased by " + boost + ". Current damage: " + player.getDamage());
             }
 
-            case SCROLL -> System.out.println("\uD83D\uDCDC" + chosen.getName() + " is a special scroll. Already in effect.");
+            case ACCESS -> System.out.println("\uD83D\uDCDC" + chosen.getName() + " is a special scroll. Already in effect.");
 
             default -> System.out.println("❓ No effect found.");
         }

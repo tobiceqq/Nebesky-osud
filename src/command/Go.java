@@ -14,7 +14,7 @@ public class Go implements Command {
     }
 
     public String execute() {
-        System.out.println("You are in: " + worldMap.getCurrentPosition1().getName());
+        System.out.println("✅ You are in: " + worldMap.getCurrentPosition1().getName());
         System.out.println("Which way you want to go?");
 
         String direction = scanner.next();

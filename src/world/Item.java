@@ -1,11 +1,14 @@
 package world;
 
+import java.util.Random;
+
 public class Item {
 
+    Random random = new Random();
     private String name;
     private String description;
-    private int damageBoost;
-    private int hpBoost;
+    private int damageBoost = random.nextInt(10, 15);
+    private int hpBoost = random.nextInt(15, 25);
     private ItemCategory category;
 
     public Item(String name, String description, ItemCategory category) {
