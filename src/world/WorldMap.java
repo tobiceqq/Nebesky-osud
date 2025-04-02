@@ -21,9 +21,9 @@ public class WorldMap {
     private static int currentPosition = start;
     public static boolean hasMap = false;
     public static boolean location_available1 = false;
-    public static boolean location_available2 = false;
     public static boolean location_available3 = false;
     public static boolean location_available4 = false;
+    public static boolean location_available6 = false;
     public static boolean brother_rescued = false;
 
 
@@ -74,9 +74,7 @@ public class WorldMap {
         return world;
     }
 
-    public static void setWorld(HashMap<Integer, Location> world) {
-        WorldMap.world = world;
-    }
+
 
     /**
      * Moves the player to a new location based on the given direction.
@@ -128,18 +126,18 @@ public class WorldMap {
                 return "❌ The wind blocks your way. Use the Wind Scroll first.";
             }
 
-            if (currentPosition == 2 && newPosition == 3 && !location_available2) {
+            if (currentPosition == 2 && newPosition == 3 && !location_available3) {
 
                 return "❌ The forest whispers: 'You are not ready yet.' (You need the Guardian's Amulet!)";
 
             }
 
-            if (currentPosition == 3 && newPosition == 4 && !location_available3) {
+            if (currentPosition == 3 && newPosition == 4 && !location_available4) {
 
                 return "❌ A violent storm rages ahead. Calm it with the Storm Stone!";
             }
 
-            if (currentPosition == 5 && newPosition == 6 && !location_available4) {
+            if (currentPosition == 5 && newPosition == 6 && !location_available6) {
 
                 return "❌ The bridge is broken. Only the Dragon Key can restore the path.";
             }
@@ -153,17 +151,7 @@ public class WorldMap {
             return "✅ You moved to " + world.get(currentPosition).getName();
         }
 
-    /**
-     * Initializes the NPCs in the game world by placing them in specific locations.
-     */
-    public void initializeNPC(){
-        NPC.addNPC(2, new NPC("Hikari" , "Your spirit is restless… yet there’s a fire within you that cannot be extinguished.\n" +
-                "\n" +
-                "The path ahead is harsh. The storm will crush those who walk without purpose.\n" +
-                "\n" +
-                "Take this amulet. It won’t protect you from pain… but it will help you find your way through it.\n" +
-                "\n" +
-                "(Hikari gives you the Guardian’s Amulet.)"));
-    }
 
+    public void setWorld(HashMap<Integer, Location> testWorld) {
+    }
 }

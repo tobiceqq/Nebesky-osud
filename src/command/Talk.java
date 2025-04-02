@@ -1,5 +1,8 @@
 package command;
 
+import world.Item;
+import world.ItemCategory;
+import world.Location;
 import world.WorldMap;
 import characters.NPC;
 
@@ -9,11 +12,12 @@ import characters.NPC;
  */
 public class Talk implements Command {
 
-        private NPC character;
+    private NPC character;
+    private boolean isAdded = false;
 
-        public Talk() {
-            this.character = character;
-        }
+    public Talk() {
+        this.character = character;
+    }
 
     /**
      * Executes the talk command.
@@ -23,22 +27,38 @@ public class Talk implements Command {
      * @return a dialogue string or a message indicating nobody is there
      */
     public String execute() {
-            int currentPosition = WorldMap.getCurrentPosition();
-            NPC npc = NPC.getNPCIn(currentPosition);
-            if (npc != null) {
-                return npc.talk();
-            } else {
+
+        int currentLocation = WorldMap.getCurrentPosition();
+
+        switch (currentLocation) {
+            case 2:
+                NPC.getNpcs().get(0).talk();
+                if (!isAdded) {
+                    Backpack.addItem(new Item("Guardian's Amulet" , "Allows you to enter Island of Storms safely." , ItemCategory.ACCESS));
+                    isAdded = true;
+                    WorldMap.location_available3 = true;
+                }
+                break;
+            case 4:
+                NPC.getNpcs().get(1).talk();
+                WorldMap.brother_rescued = true;
+                break;
+            default:
                 return "❌ Silence... There's no one in sight.";
-            }
         }
+
+        return "";
+    }
+
 
     /**
      * This command does not end the game.
      *
-      * @return false
+     * @return false
      */
     @Override
     public boolean exit() {
         return false;
     }
+
 }

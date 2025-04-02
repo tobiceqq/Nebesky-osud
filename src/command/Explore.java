@@ -1,7 +1,5 @@
 package command;
 
-import characters.Brother;
-import characters.Player;
 import world.Item;
 import world.ItemCategory;
 import world.Location;
@@ -57,25 +55,24 @@ public class Explore implements Command {
                 case 1:
                     break;
                 case 2:
-                    items.add(new Item("Guardian's Amulet" , "Allows you to enter Island of Storms safely." , ItemCategory.ACCESS));
                     items.add(new Item("Healing Herb" , "Restores +20 HP when used." , ItemCategory.HEAL));
-                    WorldMap.location_available3 = true;
                     break;
                 case 3:
                     items.add(new Item("Soul Key" , "Opens the spiritual gate leading to Sky Castle." , ItemCategory.ACCESS));
-                    WorldMap.location_available3 = true;
+                    items.add(new Item("Healing Herb" , "Restores +20 HP when used." , ItemCategory.HEAL));
+                    WorldMap.location_available4 = true;
                     break;
                 case 4:
                     items.add(new Item("Storm Stone" , "Calms the storm and unlocks access to Sky Castle." , ItemCategory.ACCESS));
-                    items.add(new Item("Power Gem" , "Increases your damage by +10 permanently." , ItemCategory.HEAL));
-                    WorldMap.location_available3 = true;
+                    items.add(new Item("Power Gem" , "Increases your damage by +10 permanently." , ItemCategory.POWER));
+                    WorldMap.location_available6 = true;
                     break;
                 case 5:
                     items.add(new Item("Healing Herb" , "Restores +20 HP when used." , ItemCategory.POWER));
                     break;
                 case 6:
-                    items.add(new Item("Dragon Key" , "Rebuilds the broken bridge to reach the Sacred Shrine." , ItemCategory.POWER));
-                    items.add(new Item("Power Gem" , "Increases your damage by +10 permanently." , ItemCategory.HEAL));
+                    items.add(new Item("Dragon Key" , "Rebuilds the broken bridge to reach the Sacred Shrine." , ItemCategory.ACCESS));
+                    items.add(new Item("Power Gem" , "Increases your damage by +10 permanently." , ItemCategory.POWER));
                     break;
                 case 7:
                     WorldMap.brother_rescued = true;

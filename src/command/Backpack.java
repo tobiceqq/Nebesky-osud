@@ -27,7 +27,7 @@ public class Backpack implements Command {
      */
     public static void addItem(Item item) {
         backpack.add(item);
-        System.out.println("Collected: " + item.getName());
+        System.out.println("\uD83D\uDCE6 Collected: " + item.getName());
     }
 
     /**

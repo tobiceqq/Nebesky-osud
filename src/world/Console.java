@@ -1,5 +1,6 @@
 package world;
 
+import characters.NPC;
 import command.*;
 
 import java.io.*;
@@ -64,7 +65,7 @@ public class Console {
      */
     private Scanner scanner = new Scanner(System.in);
     private void proved(){
-        System.out.println("➜ What you want to do?");
+        System.out.println("➡\uFE0F What you want to do?");
         String command = scanner.nextLine();
         command = command.trim();
         command = command.toLowerCase();
@@ -83,6 +84,7 @@ public class Console {
     public void start(){
         worldMap.loadMap();
         initialize();
+        initializeNPC();
         System.out.println("\uD83D\uDD0D For available commands type 'commands' or 'c'");
         try{
             fileReset();
@@ -114,6 +116,19 @@ public class Console {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(commandFile,false))){
         }catch(Exception e){
         }
+    }
+
+    /**
+     * Initializes the NPCs in the game world by placing them in specific locations.
+     */
+    public void initializeNPC() {
+        NPC.addNPC(new NPC("\uD83D\uDCAC Hikari" , """
+                "Welcome, traveler. I sense great purpose within you...
+                Take this amulet – it will protect you from the raging storms ahead.
+                Use it wisely. May the winds guide your steps."
+                """));
+        NPC.addNPC(new NPC("\uD83D\uDCAC Akio" , "Thank you for rescuing me."));
+
     }
 
     /**

@@ -30,17 +30,17 @@ public class Fight implements Command {
         Enemy enemy = Enemy.getEnemyIn(currentPosition);
         Player player = Player.getInstance();
 
-        // Define enemies per location
+
         switch (currentPosition) {
 
             case 0 -> {
                 return "\uD83D\uDEAB No enemies in sight.";
             }
-            case 1 -> enemy = new Enemy("Heavenly guardian (weak)", 15, 70 );
+            case 1 -> enemy = new Enemy("Heavenly guardian (weak)", 10, 70 );
             case 2 -> {
                 return "\uD83D\uDEAB No enemies in sight.";
             }
-            case 3 -> enemy = new Enemy("Heavenly guardian (strong)", 25, 80 );
+            case 3 -> enemy = new Enemy("Heavenly guardian (strong)", 20, 80 );
             case 4 -> enemy = new Enemy("Kurojin", 30, 85 );
             case 5 -> {
                 return "\uD83D\uDEAB No enemies in sight.";
@@ -48,27 +48,27 @@ public class Fight implements Command {
             case 6 -> {
                 return "\uD83D\uDEAB No enemies in sight.";
             }
-            case 7 -> enemy = new Enemy("Raijinmaru", 35, 100 );
+            case 7 -> enemy = new Enemy("Raijinmaru", 25, 100 );
             default -> {
                 return "\uD83D\uDEAB No enemy in sight.";
             }
         }
 
         // Display stats
-        System.out.println("This is " + enemy.getName() + "!");
-        System.out.println("Enemy stats →   hp: " + enemy.getHp() + "| damage: " + enemy.getDamage());
+        System.out.println("⚔\uFE0F This is " + enemy.getName() + "!");
+        System.out.println("\uD83E\uDDDF Enemy stats →   ❤\uFE0F hp: " + enemy.getHp() + " | \uD83D\uDDE1\uFE0F damage: " + enemy.getDamage());
         System.out.println("--");
-        System.out.println("Your stats →   hp: " + player.getHp() + "| damage: " + player.getDamage());
-        System.out.println("To begin the fight you must type 'f' ");
+        System.out.println("\uD83E\uDDCD Your stats →   ❤\uFE0F hp: " + player.getHp() + " | \uD83D\uDDE1\uFE0F damage: " + player.getDamage());
+        System.out.println("\uD83D\uDCDD To begin the fight you must type 'f' ");
         String input = sc.nextLine().toLowerCase();
 
         if (input.equals("f")) {
-            System.out.println("The fight between you and " + enemy.getName() + " starts!");
+            System.out.println("⚔\uFE0F The fight between you and " + enemy.getName() + " starts! ⚔\uFE0F");
 
             while (player.getHp() > 0 && enemy.getHp() > 0) {
                 // Print round status
-                System.out.println(enemy.getName() + "→   hp: " + enemy.getHp() + "    |    damage: " + enemy.getDamage());
-                System.out.println(player.getName() + "→   hp: " + player.getHp() + "    |  damage: " + player.getDamage());
+                System.out.println("\uD83C\uDFAF " + enemy.getName() + "→   ❤\uFE0F hp: " + enemy.getHp() + "    |    \uD83D\uDDE1\uFE0F damage: " + enemy.getDamage());
+                System.out.println("\uD83E\uDDCD " + player.getName() + "→   ❤\uFE0F hp: " + player.getHp() + "    |  \uD83D\uDDE1\uFE0F damage: " + player.getDamage());
 
                 // Player attacks
                 enemy.setHp(enemy.getHp() - player.getDamage());
@@ -79,8 +79,9 @@ public class Fight implements Command {
                     System.out.println("✅ You defeated the enemy!");
                     player.setDamage(player.getDamage() + damageBonus);
                     player.setHp(player.getHp() + hpBonus);
-                    return "You earned hp: " + hpBonus + " and damage: " + damageBonus;
+                    return "\uD83C\uDF81 You earned ❤\uFE0F hp: " + hpBonus + "    |    \uD83D\uDDE1\uFE0F damage: " + damageBonus;
                 }
+
 
                 // Enemy attacks
                 player.setHp(player.getHp() - enemy.getDamage());
@@ -97,7 +98,7 @@ public class Fight implements Command {
     /**
      * Indicates if the player was defeated, which should cause the game to end.
      *
-     * @return true if player lost the figt, false otherwise
+     * @return true if player lost the fight, false otherwise
      */
     @Override
     public boolean exit() {

@@ -3,6 +3,7 @@ package characters;
 import command.Backpack;
 import world.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -13,7 +14,9 @@ public class NPC {
 
     private String name;
     private String dialogue;
-    private static HashMap<Integer, NPC> npcs = new HashMap<>();
+    private static ArrayList<NPC> npcs = new ArrayList();
+
+
 
     public NPC(String name, String dialogue) {
         this.name = name;
@@ -21,13 +24,11 @@ public class NPC {
     }
 
     /**
-     * Registers an NPC at a specific location.
-     *
-     * @param location the location ID
-     * @param npc the NPC instance to assign
+     * Adds a new NPC to the list of NPCs.
+     * @param npc
      */
-    public static void addNPC(int location, NPC npc) {
-        npcs.put(location, npc);
+    public static void addNPC(NPC npc) {
+        npcs.add(npc);
     }
 
     /**
@@ -35,16 +36,13 @@ public class NPC {
      * @param location the location ID
      * @return the NPC at the location, or null if none exists
      */
-    public static NPC getNPCIn(int location) {
-        return npcs.get(location);
-    }
 
     /**
      * Returns tne NPC's dialogue in a formatted string.
      * @return a string in the form: "name: dialogue"
      */
-    public String talk() {
-        return name + ": " + dialogue;
+    public void talk() {
+        System.out.println(name +  ": " + dialogue);
     }
 
     public String getDialogue() {
@@ -63,5 +61,7 @@ public class NPC {
         this.name = name;
     }
 
-
+    public static ArrayList<NPC> getNpcs() {
+        return npcs;
+    }
 }
