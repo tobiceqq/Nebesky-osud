@@ -7,12 +7,22 @@ import world.WorldMap;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Command that initiates and handles a turn-based fight between the player and an enemy.
+ * The enemy depends on the player's current location.
+ */
 public class Fight implements Command {
 
     private Enemy enemy;
     private boolean isDefeated = false;
     Random random = new Random();
 
+    /**
+     * Executes the fight command.
+     * Depending on the current position, an enemy may appear and a fight may begin.
+     *
+     * @return a message about the result of the fight or absence of enemies
+     */
     @Override
     public String execute() {
         Scanner sc = new Scanner(System.in);
@@ -20,7 +30,7 @@ public class Fight implements Command {
         Enemy enemy = Enemy.getEnemyIn(currentPosition);
         Player player = Player.getInstance();
 
-
+        // Define enemies per location
         switch (currentPosition) {
 
             case 0 -> {
@@ -44,6 +54,7 @@ public class Fight implements Command {
             }
         }
 
+        // Display stats
         System.out.println("This is " + enemy.getName() + "!");
         System.out.println("Enemy stats →   hp: " + enemy.getHp() + "| damage: " + enemy.getDamage());
         System.out.println("--");
@@ -55,9 +66,11 @@ public class Fight implements Command {
             System.out.println("The fight between you and " + enemy.getName() + " starts!");
 
             while (player.getHp() > 0 && enemy.getHp() > 0) {
+                // Print round status
                 System.out.println(enemy.getName() + "→   hp: " + enemy.getHp() + "    |    damage: " + enemy.getDamage());
                 System.out.println(player.getName() + "→   hp: " + player.getHp() + "    |  damage: " + player.getDamage());
 
+                // Player attacks
                 enemy.setHp(enemy.getHp() - player.getDamage());
                 if (enemy.getHp() <= 0) {
                     int damageBonus = random.nextInt(10, 15);
@@ -69,6 +82,7 @@ public class Fight implements Command {
                     return "You earned hp: " + hpBonus + " and damage: " + damageBonus;
                 }
 
+                // Enemy attacks
                 player.setHp(player.getHp() - enemy.getDamage());
                 if (player.getHp() <= 0) {
                     System.out.println("❌ You were defeated!");
@@ -80,6 +94,11 @@ public class Fight implements Command {
         return "";
     }
 
+    /**
+     * Indicates if the player was defeated, which should cause the game to end.
+     *
+     * @return true if player lost the figt, false otherwise
+     */
     @Override
     public boolean exit() {
         return isDefeated;

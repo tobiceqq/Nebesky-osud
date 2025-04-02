@@ -3,6 +3,10 @@ package characters;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * Represents an enemy character in the game.
+ * Stores it's name, damage, health and location assignment.
+ */
 public class Enemy {
 
     private String name;
@@ -17,14 +21,31 @@ public class Enemy {
         this.hp = hp;
     }
 
+    /**
+     * Registers the enemy at a specific location.
+     *
+     * @param location the location ID
+     * @param enemy the enemy instance
+     */
     public static void addEnemy(int location, Enemy enemy) {
         enemies.put(location, enemy);
     }
 
+    /**
+     * Removes the enemy from the specified location.
+     *
+     * @param location the ID of the location to remove the enemy
+     */
     public static void removeEnemy(int location) {
         enemies.remove(location);
     }
 
+    /**
+     * Retrieves the enemy located at the given location.
+     *
+     * @param location the location ID
+     * @return the enemy instance at the given location, or null if none exists
+     */
     public static Enemy getEnemyIn(int location) {
         return enemies.get(location);
     }
@@ -55,6 +76,6 @@ public class Enemy {
 
     @Override
     public String toString() {
-        return "Enemy → " + "name: " + name + ", damage: " + damage + ", hp: " + hp;
+        return "Enemy → " + "name: " + name + "| damage: " + damage + "| hp: " + hp;
     }
 }

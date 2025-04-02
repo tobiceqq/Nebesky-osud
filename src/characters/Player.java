@@ -2,6 +2,10 @@ package characters;
 
 import command.Backpack;
 
+/**
+ * Represents the player character in the game.
+ * Implements a singleton pattern to ensure a single instance of the player exists.
+ */
 public class Player {
 
     private String name = "Haruto";
@@ -12,6 +16,12 @@ public class Player {
     public Player() {
     }
 
+    /**
+     * Returns the single instance of the player.
+     * Creates new instance if none exists.
+     *
+     * @return the singleton Player instance
+     */
     public static Player getInstance() {
         if (instance == null) {
             instance = new Player();
@@ -38,13 +48,13 @@ public class Player {
     public int getHp() {
         return hp;
     }
-// mozna potreba upravit
+
     public void setHp(int hp) {
         this.hp = hp;
     }
 
     @Override
     public String toString() {
-        return "Player → " + "name: " + name + ", damage: " + damage + ", hp: " + hp;
+        return "Player → " + "name: " + name + " | damage: " + damage + " | hp: " + hp;
     }
 }

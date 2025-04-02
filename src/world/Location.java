@@ -1,6 +1,9 @@
 package world;
 import java.util.Arrays;
 
+/**
+ * Represents a location in the game world.
+ */
 public class Location {
     private String name;
     private int ID;

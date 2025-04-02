@@ -18,7 +18,7 @@ class FightTest {
 
         Fight fight = new Fight();
 
-        player.setHp(100);
+
         Enemy kurojin = new Enemy("Kurojin" , 30 , 85);
         kurojin.setHp(0);
 

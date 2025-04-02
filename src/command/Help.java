@@ -1,8 +1,17 @@
 package command;
 
+/**
+ * Command that displays a list of available commands the player can use.
+ * Useful for reminding the player of the possible actions in the game.
+ */
 public class Help implements Command {
 
 
+    /**
+     * Executes the help command by returning a formatted list of instructions.
+     *
+     * @return a multi-line string containing all available game commands
+     */
     public String execute() {
         return """
                 Available commands:
@@ -16,6 +25,12 @@ public class Help implements Command {
                 """;
     }
 
+    /**
+     * Indicates whether this command should end the game.
+     * This command does not end the game.
+     *
+     * @return false
+     */
     public boolean exit() {
         return false;
     }

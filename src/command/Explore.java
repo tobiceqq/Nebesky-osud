@@ -1,5 +1,7 @@
 package command;
 
+import characters.Brother;
+import characters.Player;
 import world.Item;
 import world.ItemCategory;
 import world.Location;
@@ -8,6 +10,10 @@ import world.WorldMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Command that allows the player to explore their current location.
+ * Reveals and collects available items based on the location ID.
+ */
 public class Explore implements Command {
 
     private WorldMap worldMap = new WorldMap();
@@ -18,6 +24,11 @@ public class Explore implements Command {
         this.location = location;
     }
 
+    /**
+     * Executes the explore command: displays the current location and collects any available items for that position.
+     *
+     * @return a message if the location is invalid, otherwise an empty string
+     */
     public String execute() {
 
         System.out.println("\uD83C\uDF0D Your current location is: " + worldMap.getCurrentPosition1() + ".");
@@ -29,6 +40,10 @@ public class Explore implements Command {
         return "";
     }
 
+    /**
+     * Checks for and provides items based on the player's current location.
+     * Items are added to the backpack and removed from the room once collected.
+     */
     public void AvailableItems() {
         int currentPosition = WorldMap.getCurrentPosition();
         if (!roomItems.containsKey(currentPosition)) {
@@ -36,16 +51,36 @@ public class Explore implements Command {
 
             switch (currentPosition) {
                 case 0:
-                    items.add(new Item("Wind Scroll" , "Allows the access to the next area" , ItemCategory.ACCESS));
+                    items.add(new Item("Wind Scroll" , "Unlocks access to Island of White Shadows from Wind Gate." , ItemCategory.ACCESS));
                     WorldMap.location_available1 = true;
                     break;
                 case 1:
-                    items.add(new Item("Silver Bell" , "" , ItemCategory.ACCESS));
                     break;
                 case 2:
-                    items.add(new Item("Guardian's Amulet" , "" , ItemCategory.ACCESS));
-                    items.add(new Item("Heal potion" , "Heals you by 15 HP" , ItemCategory.HEAL));
+                    items.add(new Item("Guardian's Amulet" , "Allows you to enter Island of Storms safely." , ItemCategory.ACCESS));
+                    items.add(new Item("Healing Herb" , "Restores +20 HP when used." , ItemCategory.HEAL));
+                    WorldMap.location_available3 = true;
                     break;
+                case 3:
+                    items.add(new Item("Soul Key" , "Opens the spiritual gate leading to Sky Castle." , ItemCategory.ACCESS));
+                    WorldMap.location_available3 = true;
+                    break;
+                case 4:
+                    items.add(new Item("Storm Stone" , "Calms the storm and unlocks access to Sky Castle." , ItemCategory.ACCESS));
+                    items.add(new Item("Power Gem" , "Increases your damage by +10 permanently." , ItemCategory.HEAL));
+                    WorldMap.location_available3 = true;
+                    break;
+                case 5:
+                    items.add(new Item("Healing Herb" , "Restores +20 HP when used." , ItemCategory.POWER));
+                    break;
+                case 6:
+                    items.add(new Item("Dragon Key" , "Rebuilds the broken bridge to reach the Sacred Shrine." , ItemCategory.POWER));
+                    items.add(new Item("Power Gem" , "Increases your damage by +10 permanently." , ItemCategory.HEAL));
+                    break;
+                case 7:
+                    WorldMap.brother_rescued = true;
+                    break;
+
             }
             roomItems.put(currentPosition, items);
         }
@@ -63,6 +98,11 @@ public class Explore implements Command {
         }
     }
 
+    /**
+     * This command does not end the game.
+     *
+     * @return false
+     */
     @Override
     public boolean exit() {
         return false;

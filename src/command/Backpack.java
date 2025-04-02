@@ -7,6 +7,11 @@ import world.ItemCategory;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the player's backpack (inventory).
+ * Allows viewing, managing, and activating collected items.
+ * Implements the Command interface.
+ */
 public class Backpack implements Command {
 
     private static final ArrayList<Item> backpack = new ArrayList<>();
@@ -15,11 +20,21 @@ public class Backpack implements Command {
         return backpack;
     }
 
+    /**
+     * Adds an item to the backpack and prints a confirmation message.
+     *
+     * @param item the item to be added
+     */
     public static void addItem(Item item) {
         backpack.add(item);
         System.out.println("Collected: " + item.getName());
     }
 
+    /**
+     * Executes the backpack command, allowing the player to view or activate items via console interaction.
+     *
+     * @return an empty string (no further message)
+     */
     @Override
     public String execute() {
         Scanner input = new Scanner(System.in);
@@ -43,6 +58,9 @@ public class Backpack implements Command {
         return "";
     }
 
+    /**
+     * Prints all items currently in the backpack with their descriptions.
+     */
     private void printInventory() {
         System.out.println("\uD83C\uDF92 Backpack contents: ");
         for (int i = 0; i < backpack.size(); i++) {
@@ -51,6 +69,12 @@ public class Backpack implements Command {
         }
     }
 
+    /**
+     * Allow the player to select and activate an item from the backpack.
+     * Applies effects depending on the item's category.
+     *
+     * @param input the Scanner used for reading user input
+     */
     private void activateItem(Scanner input) {
         printInventory();
         System.out.println("Select item to use (number): ");
@@ -87,12 +111,16 @@ public class Backpack implements Command {
                 System.out.println("\uD83D\uDDE1\uFE0F Damage increased by " + boost + ". Current damage: " + player.getDamage());
             }
 
-            case ACCESS -> System.out.println("\uD83D\uDCDC" + chosen.getName() + " is a special scroll. Already in effect.");
+            case ACCESS -> System.out.println("\uD83D\uDCDC" + chosen.getName() + " has been activated.");
 
             default -> System.out.println("❓ No effect found.");
         }
     }
 
+    /**
+     * Indicates whether this command should cause the game to exit.
+     * @return
+     */
     @Override
     public boolean exit() {
         return false;

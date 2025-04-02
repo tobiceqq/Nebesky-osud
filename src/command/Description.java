@@ -11,10 +11,19 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Command that provides descriptions of the player's current location.
+ * Reads location descriptions from external text files based on current position.
+ */
 public class Description implements Command {
 
     WorldMap worldMap = new WorldMap();
 
+    /**
+     * Executes the command and prints the description of the current location based on the world map's position.
+     *
+     * @return an empty string (no specific return message)
+     */
     public String execute() {
         int currentPosition = worldMap.getCurrentPosition();
 
@@ -49,6 +58,9 @@ public class Description implements Command {
         return "";
     }
 
+    /**
+     * Prints all the texts.
+     */
     public void text0() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/textFiles/wind_gate.txt"))) {
             String line;
@@ -137,6 +149,16 @@ public class Description implements Command {
         }
     }
 
+    /**
+     * This command does not trigger the end of the game.
+     *
+     * @return false
+     */
+    @Override
+    public boolean exit() {
+        return false;
+    }
+
 
 
 
@@ -204,8 +226,4 @@ public class Description implements Command {
         }
     }
 */
-    @Override
-    public boolean exit() {
-        return false;
-    }
 }

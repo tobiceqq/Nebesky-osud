@@ -6,6 +6,10 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Represents the main console interface for the game.
+ * Handles user input, command execution, command initialization and logging of all entered commands.
+ */
 public class Console {
     private boolean exit = false;
     private HashMap<String, Command> map = new HashMap<>();
@@ -22,6 +26,10 @@ public class Console {
 
 
 
+    /**
+     * Initializes the command map by associating string inputs with Command instances.
+     * Supports both full command words and numeric shortcuts (1-7).
+     */
     public void initialize() {
         map.put("go",new Go(worldMap));
         map.put("1", new Go(worldMap));
@@ -51,6 +59,9 @@ public class Console {
 
     }
 
+    /**
+     * Asks the player what they want to do, read their input, logs it and executes the appropriate command.
+     */
     private Scanner scanner = new Scanner(System.in);
     private void proved(){
         System.out.println("➜ What you want to do?");
@@ -66,6 +77,9 @@ public class Console {
         }
     }
 
+    /**
+     * Starts the game loop. Loads the world map and shows help and repeatedly prompts for commands till the game ends.
+     */
     public void start(){
         worldMap.loadMap();
         initialize();
@@ -80,25 +94,42 @@ public class Console {
         }
     }
 
-    private void saveCommand(String prikaz){
+    /**
+     * Saves a command to the command log file.
+     * @param command the command string entered by the player
+     */
+    private void saveCommand(String command){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(commandFile,true))){
-            bw.write(prikaz);
+            bw.write(command);
             bw.newLine();
         }catch(Exception e){
 
         }
     }
 
+    /**
+     * Clears the command log file before starting a new session.
+     */
     private void fileReset(){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(commandFile,false))){
         }catch(Exception e){
         }
     }
 
+    /**
+     * Gets the exit flag.
+     *
+     * @return true if the game should exit, false otherwise
+     */
     public boolean isExit() {
         return exit;
     }
 
+    /**
+     * Sets the exit flag.
+     *
+     * @param exit true to end, false to continue
+     */
     public void setExit(boolean exit) {
         this.exit = exit;
     }

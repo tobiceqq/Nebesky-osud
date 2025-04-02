@@ -9,7 +9,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 
-
+/**
+ * Represents the full game world map.
+ * Handles location loading, player movement, and story-related access logic.
+ *
+ * @author Michaela Meitnerová
+ */
 public class WorldMap {
     private static HashMap<Integer, Location> world = new HashMap<>();
     private static int start = 0;
@@ -22,7 +27,12 @@ public class WorldMap {
     public static boolean brother_rescued = false;
 
 
-
+    /**
+     * Loads the world map from a text file.
+     * Each line represents a location with its connections.
+     *
+     * @return true if loading was successful, false otherwise
+     */
     public boolean loadMap() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/textFiles/map.txt"))) {
             String line;
@@ -42,10 +52,20 @@ public class WorldMap {
         }
     }
 
+    /**
+     * Returns the current player location as a Location object.
+     *
+     * @return the current location
+     */
     public Location getCurrentPosition1() {
         return world.get(currentPosition);
     }
 
+    /**
+     * Returns the current position as an integer (location ID)
+     *
+     * @return the current location ID
+     */
     static public int getCurrentPosition() {
         return currentPosition;
     }
@@ -54,10 +74,17 @@ public class WorldMap {
         return world;
     }
 
+    public static void setWorld(HashMap<Integer, Location> world) {
+        WorldMap.world = world;
+    }
 
-
-
-
+    /**
+     * Moves the player to a new location based on the given direction.
+     * Checks for restrictions like missing item or locked paths.
+     *
+     * @param direction the desired movement direction (example "north", "s", "e", "west")
+     * @return a message indicating the outcome of the movement
+     */
     public String move(String direction) {
         int index;
         switch (direction.toLowerCase()) {
@@ -126,7 +153,9 @@ public class WorldMap {
             return "✅ You moved to " + world.get(currentPosition).getName();
         }
 
-
+    /**
+     * Initializes the NPCs in the game world by placing them in specific locations.
+     */
     public void initializeNPC(){
         NPC.addNPC(2, new NPC("Hikari" , "Your spirit is restless… yet there’s a fire within you that cannot be extinguished.\n" +
                 "\n" +

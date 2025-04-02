@@ -2,6 +2,10 @@ package world;
 
 import java.util.Random;
 
+/**
+ * Represents an item in the game world.
+ * Each item has a name, description, category and may provide boost.
+ */
 public class Item {
 
     Random random = new Random();
@@ -39,6 +43,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item → " + "name: " + name + ", description: " + description + ", category: " + category;
+        return "Item → " + "name: " + name + " | description: " + description + " | category: " + category;
     }
 }

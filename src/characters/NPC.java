@@ -1,7 +1,14 @@
 package characters;
 
+import command.Backpack;
+import world.Item;
+
 import java.util.HashMap;
 
+/**
+ * Represents a non-player character (NPC) in the game.
+ * Each NPC has a name, a dialogue line, and can be assigned to a location.
+ */
 public class NPC {
 
     private String name;
@@ -13,14 +20,29 @@ public class NPC {
         this.dialogue = dialogue;
     }
 
+    /**
+     * Registers an NPC at a specific location.
+     *
+     * @param location the location ID
+     * @param npc the NPC instance to assign
+     */
     public static void addNPC(int location, NPC npc) {
         npcs.put(location, npc);
     }
 
+    /**
+     * Retrieves the NPC assigned to a given location.
+     * @param location the location ID
+     * @return the NPC at the location, or null if none exists
+     */
     public static NPC getNPCIn(int location) {
         return npcs.get(location);
     }
 
+    /**
+     * Returns tne NPC's dialogue in a formatted string.
+     * @return a string in the form: "name: dialogue"
+     */
     public String talk() {
         return name + ": " + dialogue;
     }
@@ -40,9 +62,6 @@ public class NPC {
     public void setName(String name) {
         this.name = name;
     }
-
-
-
 
 
 }
