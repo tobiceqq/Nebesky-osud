@@ -1,5 +1,6 @@
 package command;
 
+import characters.Player;
 import world.Item;
 import world.ItemCategory;
 import world.Location;
@@ -40,6 +41,10 @@ public class Talk implements Command {
                 }
                 break;
             case 4:
+
+                if (!Player.getInstance().isBrotherAvailable()) {
+                    return "\uD83D\uDD12 Your brother is still trapped. Defeat ? to reach him.";
+                }
                 NPC.getNpcs().get(1).talk();
                 WorldMap.brother_rescued = true;
                 break;

@@ -12,6 +12,7 @@ public class Player {
     private int damage = 20;
     private int hp = 100;
     private static Player instance = new Player();
+    private boolean brotherAvailable = false;
 
     public Player() {
     }
@@ -51,6 +52,14 @@ public class Player {
 
     public void setHp(int hp) {
         this.hp = hp;
+    }
+
+    public boolean isBrotherAvailable() {
+        return brotherAvailable;
+    }
+
+    public void setBrotherAvailable(boolean available) {
+        this.brotherAvailable = available;
     }
 
     @Override

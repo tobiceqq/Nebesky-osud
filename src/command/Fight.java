@@ -76,6 +76,19 @@ public class Fight implements Command {
                     int damageBonus = random.nextInt(10, 15);
                     int hpBonus = random.nextInt(15, 25);
 
+                    if (currentPosition == 4) {
+                        System.out.println("🔓 The prison holding your brother has opened");
+                        player.setBrotherAvailable(true);
+                    }
+                    if (currentPosition == 7) {
+                        System.out.println("\uD83C\uDFC6 You have defeated Raijinmaru, the final boss!");
+                        System.out.println("✨ The skies are calm again. Peace returns to the world.");
+                        End.exit = true;
+                        return "\uD83C\uDF89 Congratulations! You have completed Destiny of the Sky!";
+
+
+                    }
+
                     System.out.println("✅ You defeated the enemy!");
                     player.setDamage(player.getDamage() + damageBonus);
                     player.setHp(player.getHp() + hpBonus);

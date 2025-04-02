@@ -127,7 +127,11 @@ public class Console {
                 Take this amulet – it will protect you from the raging storms ahead.
                 Use it wisely. May the winds guide your steps."
                 """));
-        NPC.addNPC(new NPC("\uD83D\uDCAC Akio" , "Thank you for rescuing me."));
+        NPC.addNPC(new NPC("\uD83D\uDCAC Akio" , """
+                "You... You really made it.
+                I never stopped believing in you, even in the darkest moments.
+                Now that we're together again, let's end this – side by side."
+                """));
 
     }
 

@@ -68,10 +68,11 @@ public class Explore implements Command {
                     WorldMap.location_available6 = true;
                     break;
                 case 5:
-                    items.add(new Item("Healing Herb" , "Restores +20 HP when used." , ItemCategory.POWER));
+                    items.add(new Item("Dragon Key" , "Rebuilds the broken bridge to reach the Sacred Shrine." , ItemCategory.ACCESS));
+                    items.add(new Item("Healing Herb" , "Restores +20 HP when used." , ItemCategory.HEAL));
+                    WorldMap.location_available6 = true;
                     break;
                 case 6:
-                    items.add(new Item("Dragon Key" , "Rebuilds the broken bridge to reach the Sacred Shrine." , ItemCategory.ACCESS));
                     items.add(new Item("Power Gem" , "Increases your damage by +10 permanently." , ItemCategory.POWER));
                     break;
                 case 7:
@@ -91,7 +92,7 @@ public class Explore implements Command {
             }
             items.clear();
         } else {
-            System.out.println("❌ No more items here.");
+            System.out.println("❌ No items here.");
         }
     }
 
